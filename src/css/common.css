@@ -23,7 +23,7 @@ button {
   cursor: pointer;
 }
 
-.item {
+.gallery .item {
   display: flex;
   height: 250px;
   margin-bottom: 40px;
