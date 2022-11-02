@@ -12,42 +12,37 @@ const refs = {
 
 const array = [];
 
-refs.btnCreat.addEventListener('click', creatElements);
+refs.btnCreat.addEventListener('click', () => {
+  createBoxes(Number(refs.inputField.value))
+});
 
-function creatElements() {
-  console.log(refs.sizeStart);
-  const box = document.createElement('div');
-  box.style.backgroundColor = 
+function createBoxes(amount) {
+  for (let i = 0; i < amount; i += 1) {
+    const box = document.createElement('div');
+    box.style.backgroundColor = getRandomHexColor();
+    box.style.width = `${refs.sizeStart}px`;
+    box.style.height = `${refs.sizeStart}px`;
+    array.push(box);
+    refs.sizeStart += 10;
+    console.dir(refs.boxesList);
+  }
+  refs.boxesList.append(...array);
 }
 
-// function creatElements() {
-//   let markup = "";
-//   let size = 30;
-//   const amount = Number(refs.inputField.value);
-//   for (let i = 0; i < amount; i += 1) {
-//     size += 10;
-//     markup += `<div bgcolor="${getRandomHexColor()}" width="${size}" height="${size}"></div>`;
-//   }
-//   refs.boxesList.insertAdjacentHTML("beforeend", markup);
-//   console.log(refs.boxesList);
-// }
+refs.btnDestroy.addEventListener('click', destroyBoxes);
 
+function destroyBoxes() {
+  [...refs.boxesList.children].forEach(el => el.remove());
+  array.splice(0, array.length);
+  refs.sizeStart = 30;
+}
 
-// refs.inputField.addEventListener('input', (event) => {
-//   const amount = event.currentTarget.value;
-//   console.log(amount);
-//   console.dir(refs.inputField);
-//   refs.btnCreat.addEventListener('click', (amount) => {
-//     createBoxes(amount);
-//   })
-// });
 
 // function createBoxes(amount) {
 //   let markup = "";
-//   let size = 30;
-//   for (let i = 0; i < Number(amount); i += 1) {
-//     size += 10;
-//     markup += `<div bgcolor="${getRandomHexColor()}" width="${size}" height="${size}"></div>`;
+//   for (let i = 0; i < amount; i += 1) {
+//     markup += `<div style='background-color: ${getRandomHexColor()}; width: ${refs.sizeStart}px; height: ${refs.sizeStart}px'></div>`;
+//     refs.sizeStart += 10;
 //   }
 //   refs.boxesList.insertAdjacentHTML("beforeend", markup);
 //   console.log(refs.boxesList);
