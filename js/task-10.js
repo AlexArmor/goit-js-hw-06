@@ -10,13 +10,13 @@ const refs = {
   sizeStart: 30,
 }
 
-const array = [];
 
 refs.btnCreat.addEventListener('click', () => {
   createBoxes(Number(refs.inputField.value))
 });
 
 function createBoxes(amount) {
+  const array = [];
   for (let i = 0; i < amount; i += 1) {
     const box = document.createElement('div');
     box.style.backgroundColor = getRandomHexColor();
@@ -32,8 +32,8 @@ function createBoxes(amount) {
 refs.btnDestroy.addEventListener('click', destroyBoxes);
 
 function destroyBoxes() {
-  [...refs.boxesList.children].forEach(el => el.remove());
-  array.splice(0, array.length);
+  refs.boxesList.innerHTML = '';
+  // [...refs.boxesList.children].forEach(el => el.remove());
   refs.sizeStart = 30;
 }
 
